@@ -25,9 +25,14 @@ of code to draw then you've probably over done it.
 
 */
 
+
+let isLeft = false,
+	isRight = false,
+	isPlummeting = false,
+	isFalling = false;
 /**
- * Background stuff
- */
+* Background stuff
+*/
 
 const groundLevel = 432;
 
@@ -37,77 +42,116 @@ const groundLevel = 432;
 
 const gameCharHeight = 100;
 const gameCharYStart = groundLevel - (gameCharHeight / 2);
-console.log('height', gameCharHeight);
-console.log('ground level', groundLevel);
-console.log('START', gameCharYStart);
 
-let gameChar_x = 0;
+let gameChar_x = 56;
 let gameChar_y = gameCharYStart;
-
-
-function setup() {
-	createCanvas(1024, 576);
-}
-
-function drawGround() {
-	noStroke();
-	fill(0, 155, 0);
-	rect(0, groundLevel, 1024, 144); //draw some green ground
-}
-
-function drawCloud() {
-	noStroke();
-	fill(255);
-	ellipse(100, 100, 100);
-	ellipse(150, 60, 100, 100);
-	ellipse(150, 100, 100, 100);
-	ellipse(200, 100, 100, 100);
-	text("cloud", 200, 100);
-}
-
-function drawMountain() {
-	noStroke();
-	fill(70, 130, 180);
-	triangle(380, 432, 600, 232, 930, 432);
-	fill(70, 130, 180);
-	triangle(240, 432, 450, 332, 930, 432);
-	fill(70, 130, 180);
-	triangle(640, 432, 850, 332, 1030, 432);
-}
-
-function drawTree() {
-	noStroke();
-	fill(139, 69, 19);
-	triangle(750, 432, 900, 432, 820, 225);
-	fill(0, 155, 0);
-	triangle(750, 250, 900, 250, 820, 200);
-	triangle(750, 300, 900, 300, 820, 225);
-}
-
-function drawCanyon() {
-	noStroke();
-	fill(139, 69, 19);
-	triangle(70, 432, 200, 432, 130, 600);
-}
 
 function drawCharacter() {
 	noStroke();
 	fill(139, 69, 19);
-	ellipse(56, gameChar_y, 55, gameCharHeight);
+	ellipse(gameChar_x, gameChar_y, 55, gameCharHeight);
 	fill(255, 255, 255);
 	ellipse(10, 10, 10, 10);
 }
 
-function drawSky() {
-	background(100, 155, 255);
-}
+function setup() {
 
-function draw() {
+	function drawGround() {
+		noStroke();
+		fill(0, 155, 0);
+		rect(0, groundLevel, 1024, 144); //draw some green ground
+	}
+
+	function drawCloud() {
+		noStroke();
+		fill(255);
+		ellipse(100, 100, 100);
+		ellipse(150, 60, 100, 100);
+		ellipse(150, 100, 100, 100);
+		ellipse(200, 100, 100, 100);
+		text("cloud", 200, 100);
+	}
+
+	function drawMountain() {
+		noStroke();
+		fill(70, 130, 180);
+		triangle(380, 432, 600, 232, 930, 432);
+		fill(70, 130, 180);
+		triangle(240, 432, 450, 332, 930, 432);
+		fill(70, 130, 180);
+		triangle(640, 432, 850, 332, 1030, 432);
+	}
+
+	function drawTree() {
+		noStroke();
+		fill(139, 69, 19);
+		triangle(750, 432, 900, 432, 820, 225);
+		fill(0, 155, 0);
+		triangle(750, 250, 900, 250, 820, 200);
+		triangle(750, 300, 900, 300, 820, 225);
+	}
+
+	function drawCanyon() {
+		noStroke();
+		fill(139, 69, 19);
+		triangle(70, 432, 200, 432, 130, 600);
+	}
+
+
+	function drawSky() {
+		background(100, 155, 255);
+	}
+
+	createCanvas(1024, 576);
+
 	drawSky();
 
 	drawGround();
 
-	drawCharacter();
+
+}
+
+function keyPressed() {
+	if (keyCode == 37) {
+		console.log('left arrow', isLeft);
+		isLeft = true;
+	}
+
+	if (keyCode == 39) {
+		console.log('right arrow', isRight);
+		isRight = true;
+	}
+}
+
+function keyReleased() {
+	if (keyCode == 37) {
+		console.log('left arrow', isLeft);
+		isLeft = false;
+	}
+
+	if (keyCode == 39) {
+		console.log('right arrow', isRight);
+		isRight = false;
+	}
+}
+
+function draw() {
+
+
+	if (isLeft && isFalling) {
+		//add your jumping left code
+	} else if (isRight && isFalling) {
+
+
+	} else if (isLeft) {
+
+	} else if (isRight) {
+
+	} else if (isFalling || isPlummeting) {
+
+	} else {
+		drawCharacter();
+	}
 
 	push();
 	translate(440, 350);
