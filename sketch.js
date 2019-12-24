@@ -46,12 +46,35 @@ const gameCharYStart = groundLevel - (gameCharHeight / 2);
 let gameChar_x = 56;
 let gameChar_y = gameCharYStart;
 
+
 function drawCharacter() {
 	noStroke();
 	fill(139, 69, 19);
 	ellipse(gameChar_x, gameChar_y, 55, gameCharHeight);
 	fill(255, 255, 255);
-	ellipse(10, 10, 10, 10);
+	ellipse(gameChar_x, gameChar_y, 10, 10);
+	fill(255, 255, 255);
+	ellipse(gameChar_x + 10, gameChar_y, 10, 10);
+}
+
+function drawCharacterLeft() {
+	noStroke();
+	fill(139, 69, 19);
+	ellipse(gameChar_x, gameChar_y, 55, gameCharHeight);
+	fill(255, 255, 255);
+	ellipse(gameChar_x - 20, gameChar_y, 10, 10);
+	fill(255, 255, 255);
+	ellipse(gameChar_x - 10, gameChar_y, 10, 10);
+}
+
+function drawCharacterRight() {
+	noStroke();
+	fill(139, 69, 19);
+	ellipse(gameChar_x, gameChar_y, 55, gameCharHeight);
+	fill(255, 255, 255);
+	ellipse(gameChar_x + 20, gameChar_y, 10, 10);
+	fill(255, 255, 255);
+	ellipse(gameChar_x + 10, gameChar_y, 10, 10);
 }
 
 function setup() {
@@ -144,13 +167,21 @@ function draw() {
 
 
 	} else if (isLeft) {
-
+		drawCharacterLeft();
 	} else if (isRight) {
-
+		drawCharacterRight();
 	} else if (isFalling || isPlummeting) {
 
 	} else {
 		drawCharacter();
+	}
+
+	if (isLeft == true) {
+		gameChar_x -= 10;
+	}
+
+	if (isRight == true) {
+		gameChar_x += 10;
 	}
 
 	push();
